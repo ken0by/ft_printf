@@ -1,29 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_printf_chars.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rodro <rodro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/21 16:35:22 by rodro             #+#    #+#             */
-/*   Updated: 2023/02/21 20:47:46 by rodro            ###   ########.fr       */
+/*   Created: 2023/02/21 20:44:23 by rodro             #+#    #+#             */
+/*   Updated: 2023/02/21 21:02:11 by rodro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "ft_printf.h"
 
-/* LIBRERIAS */
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdarg.h>
+int	ft_strlen(const char *str)
+{
+	int	i;
 
-/* FUNCIONES */
-int	ft_strlen(const char *str);
-int	ft_putchr(const char c);
-int	ft_putstr(const char *str);
-int	ft_putnbr_base(unsigned long int nbr, char *base);
-int	ft_putnbr(int nbr, char *b, char c);
-int	ft_unsig_putnbr_base(unsigned long int nbr, char *base);
+	i = 0;
+	while (str[i] != 0)
+		i++;
+	return (i);
+}
 
-#endif
+int	ft_putchr(const char c)
+{
+	return (write(1, &c, 1));
+}
+
+int	ft_putstr(const char *str)
+{
+	int	i;
+
+	i = 0;
+	if (str == 0)
+		return (write(1, "(null)", 6));
+	while (str[i] != 0)
+		i += ft_putchr(str[i]);
+	return (i);
+}
