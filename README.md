@@ -1,5 +1,5 @@
+# ft_printf
 <p align="center">
-	# ft_printf
 <img src="https://github.com/mcombeau/mcombeau/blob/main/42_badges/ft_printfm.png" alt="ft_printf 42 project badge"/>
  </p>
  <p align="center">
