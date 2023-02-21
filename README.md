@@ -4,7 +4,7 @@
  </p>
 
 <p align="center">
-	<img alt="GitHub code size in bytes" src="https://img.shields.io/github/languages/code-size/RSNinjae42/ft_printf?color=lightblue" />
+	<img alt="GitHub code size in bytes" src="https://img.shields.io/github/languages/code-size/ken0by/ft_printf?color=lightblue" />
 	<img alt="Number of lines of code" src="https://img.shields.io/tokei/lines/github/ken0by/ft_printf?color=critical" />
 	<img alt="Code language count" src="https://img.shields.io/github/languages/count/ken0by/ft_printf?color=yellow" />
 	<img alt="GitHub top language" src="https://img.shields.io/github/languages/top/ken0by/ft_printf?color=blue" />
