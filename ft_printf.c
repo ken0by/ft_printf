@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodro <rodro@student.42.fr>                +#+  +:+       +#+        */
+/*   By: rofuente <rofuente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 17:04:02 by rodro             #+#    #+#             */
-/*   Updated: 2023/02/28 18:32:32 by rodro            ###   ########.fr       */
+/*   Updated: 2023/02/28 19:58:09 by rofuente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,12 @@ int	ft_printf(char const *str, ...)
 		{
 			if (ft_strlen(str) > i + 1)
 				j += ft_type(args, str[i + 1]);
+			i++;
 		}
 		else
 			j += write(1, &str[i], 1);
 		i++;
 	}
+	va_end(args);
 	return (j);
 }

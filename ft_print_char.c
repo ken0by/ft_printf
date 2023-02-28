@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_char.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodro <rodro@student.42.fr>                +#+  +:+       +#+        */
+/*   By: rofuente <rofuente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 17:18:08 by rodro             #+#    #+#             */
-/*   Updated: 2023/02/28 18:18:05 by rodro            ###   ########.fr       */
+/*   Updated: 2023/02/28 19:45:04 by rofuente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ int	ft_strlen(const char *str)
 
 int	ft_putchr(const char c)
 {
-	return (write(1, &c, 1));
+	write(1, &c, 1);
+	return (1);
 }
 
 int	ft_putstr(const char *str)
