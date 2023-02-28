@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rodro <rodro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/21 16:34:51 by rodro             #+#    #+#             */
-/*   Updated: 2023/02/21 21:02:56 by rodro            ###   ########.fr       */
+/*   Created: 2023/02/28 17:04:02 by rodro             #+#    #+#             */
+/*   Updated: 2023/02/28 18:32:32 by rodro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_conv(va_list args, char c)
+int	ft_type(va_list args, char c)
 {
 	if (c == 'c')
 		return (ft_putchr(va_arg(args, int)));
@@ -26,20 +26,19 @@ int	ft_conv(va_list args, char c)
 	else if (c == 'i')
 		return (ft_putnbr(va_arg(args, int), "0123456789", c));
 	else if (c == 'u')
-		return (ft_unsig_putnbr_base(va_arg(args, int), "0123456789"));
+		return (ft_upn_base(va_arg(args, int), "0123456789"));
 	else if (c == 'x')
-		return (ft_unsig_putnbr_base(va_arg(args, int),
-				"0123456789abcdef"));
+		return (ft_upn_base(va_arg(args, int), "0123456789abcdef"));
 	else if (c == 'X')
-		return (ft_unsig_putnbr_base(va_arg(args, int),
-				"0123456789ABCDEF"));
+		return (ft_upn_base(va_arg(args, int), "0123456789ABCDEF"));
 	else if (c == '%')
 		return (ft_putchr('%'));
 	else
 		return (ft_putchr(c));
+	return (0);
 }
 
-int	ft_printf(const char *str, ...)
+int	ft_printf(char const *str, ...)
 {
 	va_list	args;
 	int		i;
@@ -53,7 +52,7 @@ int	ft_printf(const char *str, ...)
 		if (str[i] == '%')
 		{
 			if (ft_strlen(str) > i + 1)
-				j += ft_conv(args, str[i + 1]);
+				j += ft_type(args, str[i + 1]);
 		}
 		else
 			j += write(1, &str[i], 1);

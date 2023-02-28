@@ -7,7 +7,7 @@ CFLAGS	=	-Wall -Wextra -Werror
 
 NAME	=	libftprintf.a
 
-SRC	=	ft_printf.c ft_printf_chars.c ft_putnbr_base.c
+SRC	=	ft_printf.c ft_print_char.c ft_print_nbr.c
 OBJ	=	$(SRC:.c=.o)
 INCLUDE	=	ft_printf.h
 
@@ -40,4 +40,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re 
+.PHONY: all clean fclean re
