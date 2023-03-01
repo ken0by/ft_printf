@@ -11,6 +11,10 @@ SRC	=	ft_printf.c ft_print_char.c ft_print_nbr.c
 OBJ	=	$(SRC:.c=.o)
 INCLUDE	=	ft_printf.h
 
+SRC_B	=	ft_printf_bonus.c ft_print_char_bonus.c ft_print_nbr_bonus.clean
+OBJ_B	=	$(SRC_B:.c=.o)
+INCLUDE	=	ft_printf_bonus.h
+
 ##########COLORES##########
 DEF_COLOR = \033[0;39m
 CUT = \033[K
@@ -30,8 +34,11 @@ $(NAME): $(OBJ)
 	@$(LIB) $(NAME) $(OBJ)
 	@echo "\n$(G)Basic library compiled!$(DEF_COLOR)-> $@\n"
 
+bonus: $(OBJ) $(OBJ_B)
+	$(LIB) $(NAME) $(OBJ_B) $(OBJ)
+
 clean:
-	$(RM) $(OBJ)
+	$(RM) $(OBJ) $(OBJ_B)
 	@echo "$(R)All .o files removed$(DEF_COLOR)\n"
 
 fclean: clean
@@ -40,4 +47,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all bonus clean fclean re
