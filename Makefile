@@ -11,7 +11,7 @@ SRC	=	ft_printf.c ft_print_char.c ft_print_nbr.c
 OBJ	=	$(SRC:.c=.o)
 INCLUDE	=	ft_printf.h
 
-SRC_B	=	ft_printf_bonus.c ft_print_char_bonus.c ft_print_nbr_bonus.clean
+SRC_B	=	ft_printf_bonus.c ft_print_char_bonus.c ft_print_nbr_bonus.c
 OBJ_B	=	$(SRC_B:.c=.o)
 INCLUDE	=	ft_printf_bonus.h
 
@@ -38,7 +38,7 @@ bonus: $(OBJ) $(OBJ_B)
 	$(LIB) $(NAME) $(OBJ_B) $(OBJ)
 
 clean:
-	$(RM) $(OBJ) $(OBJ_B)
+	$(RM) $(OBJ_B)
 	@echo "$(R)All .o files removed$(DEF_COLOR)\n"
 
 fclean: clean
