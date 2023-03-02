@@ -6,7 +6,7 @@
 /*   By: rofuente <rofuente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 19:16:29 by rofuente          #+#    #+#             */
-/*   Updated: 2023/03/01 19:18:46 by rofuente         ###   ########.fr       */
+/*   Updated: 2023/03/02 17:13:54 by rofuente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,15 @@ int	ft_printf(char const *str, ...)
 	va_end(args);
 	return (j);
 }
-/*
+
 int	main(void)
 {
-	ft_printf("hola\n");
+	char str[] = "Hola que tal?";
+	char c = 'c';
+	int d = 123;
+
+	ft_printf("Primero el string:\n%s\nAhora el caracter:\n%c\nPor ultimo el numero:\n%d\n", str, c, d);
+	ft_printf("El 100%% de nada es 0\n");
+	ft_printf("%1c, %1c, %1c", '5', 'x', '\n');
 	return (0);
-}*/
+}
