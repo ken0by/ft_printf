@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rofuente <rofuente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rodro <rodro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 19:16:29 by rofuente          #+#    #+#             */
-/*   Updated: 2023/03/02 17:13:54 by rofuente         ###   ########.fr       */
+/*   Updated: 2023/03/03 11:13:23 by rodro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,22 +21,41 @@ int	ft_type(va_list args, char c)
 	else if (c == 'p')
 		return (write(1, "0x", 2) + ft_putnbr_base
 			(va_arg(args, unsigned long int), "0123456789abcdef"));
-	else if (c == 'd')
-		return (ft_putnbr(va_arg(args, int), "0123456789", c));
-	else if (c == 'i')
+	else if (c == 'd' || c == 'i')
 		return (ft_putnbr(va_arg(args, int), "0123456789", c));
 	else if (c == 'u')
-		return (ft_upn_base(va_arg(args, int), "0123456789"));
+		return (ft_upn_base(va_arg(args, unsigned long int), "0123456789"));
 	else if (c == 'x')
-		return (ft_upn_base(va_arg(args, int), "0123456789abcdef"));
+		return (ft_upn_base(va_arg(args, unsigned long int), "0123456789abcdef"));
 	else if (c == 'X')
-		return (ft_upn_base(va_arg(args, int), "0123456789ABCDEF"));
+		return (ft_upn_base(va_arg(args, unsigned long int), "0123456789ABCDEF"));
 	else if (c == '%')
 		return (ft_putchr('%'));
 	else
 		return (ft_putchr(c));
 	return (0);
 }
+
+/* va_list	*ft_change(va_list args, char c)
+{
+	char				*k;
+	int					i;
+	//unsigned long int	j;
+
+	if (c == 'c' || c == 'd' || c == 'i')
+	{
+		i = va_arg(args, int);
+		return (i);
+	}
+	else if (c == 's')
+	{
+		k = va_arg(args, char *);
+		return (&k);
+	}
+	return (&args);
+	else
+		j = var_arg(args, unsigned long int);
+} */
 
 int	ft_printf(char const *str, ...)
 {
@@ -53,6 +72,7 @@ int	ft_printf(char const *str, ...)
 		{
 			if (ft_strlen(str) > i + 1)
 				j += ft_type(args, str[i + 1]);
+				//j += ft_type(ft_change(args, str[i + 1]), str[i + 1]);
 			i++;
 		}
 		else
@@ -65,12 +85,8 @@ int	ft_printf(char const *str, ...)
 
 int	main(void)
 {
-	char str[] = "Hola que tal?";
-	char c = 'c';
-	int d = 123;
-
-	ft_printf("Primero el string:\n%s\nAhora el caracter:\n%c\nPor ultimo el numero:\n%d\n", str, c, d);
-	ft_printf("El 100%% de nada es 0\n");
-	ft_printf("%1c, %1c, %1c", '5', 'x', '\n');
+	ft_printf("%c%c%c\n", 'a', '\t', 'b');
+	printf("\t\t\t\n");
+	printf("%c%c%c\n", 'a', '\t', 'b');
 	return (0);
 }

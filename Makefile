@@ -36,15 +36,16 @@ $(NAME): $(OBJ)
 
 bonus: $(OBJ) $(OBJ_B)
 	$(LIB) $(NAME) $(OBJ_B) $(OBJ)
+	@echo "\n$(G)Bonus library compiled!$(DEF_COLOR)-> $@\n"
 
 clean:
-	$(RM) $(OBJ_B)
+	$(RM) $(OBJ) $(OBJ_B)
 	@echo "$(R)All .o files removed$(DEF_COLOR)\n"
 
 fclean: clean
 	$(RM) $(NAME)
 	@echo "$(R)Library .a file removed$(DEF_COLOR)\n"
 
-re: fclean all
+re: fclean all bonus
 
 .PHONY: all bonus clean fclean re

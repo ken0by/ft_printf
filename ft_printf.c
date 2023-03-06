@@ -6,7 +6,7 @@
 /*   By: rofuente <rofuente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 19:18:03 by rofuente          #+#    #+#             */
-/*   Updated: 2023/03/02 17:08:41 by rofuente         ###   ########.fr       */
+/*   Updated: 2023/03/01 19:18:06 by rofuente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,9 @@ int	ft_printf(char const *str, ...)
 	va_end(args);
 	return (j);
 }
-
-/* int	main(void)
+/*
+int	main(void)
 {
 	ft_printf("hola\n");
 	return (0);
-} */
+}*/
