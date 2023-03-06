@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodro <rodro@student.42.fr>                +#+  +:+       +#+        */
+/*   By: rofuente <rofuente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 19:16:29 by rofuente          #+#    #+#             */
-/*   Updated: 2023/03/03 11:13:23 by rodro            ###   ########.fr       */
+/*   Updated: 2023/03/06 16:11:56 by rofuente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,16 @@ int	ft_type(va_list args, char c)
 	else if (c == 'p')
 		return (write(1, "0x", 2) + ft_putnbr_base
 			(va_arg(args, unsigned long int), "0123456789abcdef"));
-	else if (c == 'd' || c == 'i')
+	else if (c == 'd')
+		return (ft_putnbr(va_arg(args, int), "0123456789", c));
+	else if (c == 'i')
 		return (ft_putnbr(va_arg(args, int), "0123456789", c));
 	else if (c == 'u')
-		return (ft_upn_base(va_arg(args, unsigned long int), "0123456789"));
+		return (ft_upn_base(va_arg(args, int), "0123456789"));
 	else if (c == 'x')
-		return (ft_upn_base(va_arg(args, unsigned long int), "0123456789abcdef"));
+		return (ft_upn_base(va_arg(args, int), "0123456789abcdef"));
 	else if (c == 'X')
-		return (ft_upn_base(va_arg(args, unsigned long int), "0123456789ABCDEF"));
+		return (ft_upn_base(va_arg(args, int), "0123456789ABCDEF"));
 	else if (c == '%')
 		return (ft_putchr('%'));
 	else
@@ -36,26 +38,31 @@ int	ft_type(va_list args, char c)
 	return (0);
 }
 
-/* va_list	*ft_change(va_list args, char c)
+int	wtf(char const *str, int i, int j, va_list args)
 {
-	char				*k;
-	int					i;
-	//unsigned long int	j;
+	int	k;
 
-	if (c == 'c' || c == 'd' || c == 'i')
+	k = 0;
+	while (str[i])
 	{
-		i = va_arg(args, int);
-		return (i);
+		if (str[i] == '%')
+		{
+			i++;
+			if (str[i] >= 0 && str[i] <= 9)
+			{
+				while (k < (int) str[i])
+					k += write(1, " ", 1);
+			}
+			i ++;
+			if (ft_strlen(str) > i)
+				j += ft_type(args, str[i]);
+		}
+		else
+			j += ft_type(args, str[i]);
+		i++;
 	}
-	else if (c == 's')
-	{
-		k = va_arg(args, char *);
-		return (&k);
-	}
-	return (&args);
-	else
-		j = var_arg(args, unsigned long int);
-} */
+	return (j);
+}
 
 int	ft_printf(char const *str, ...)
 {
@@ -66,27 +73,14 @@ int	ft_printf(char const *str, ...)
 	i = 0;
 	j = 0;
 	va_start(args, str);
-	while (str[i])
-	{
-		if (str[i] == '%')
-		{
-			if (ft_strlen(str) > i + 1)
-				j += ft_type(args, str[i + 1]);
-				//j += ft_type(ft_change(args, str[i + 1]), str[i + 1]);
-			i++;
-		}
-		else
-			j += write(1, &str[i], 1);
-		i++;
-	}
+	j += wtf(str, i, j, args);
 	va_end(args);
 	return (j);
 }
 
-int	main(void)
+/* int	main(void)
 {
-	ft_printf("%c%c%c\n", 'a', '\t', 'b');
-	printf("\t\t\t\n");
-	printf("%c%c%c\n", 'a', '\t', 'b');
+	ft_printf("%1c, %1c, %1c", '5', 'x', '\n');
+	printf("%1c, %1c, %1c", '5', 'x', '\n');
 	return (0);
-}
+} */
